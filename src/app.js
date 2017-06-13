@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   var options = {
     el: $("#movie-list"),
-    model: pet
+    model: movieList
   };
 
   var movieListDisplay = new MovieListView(options);
