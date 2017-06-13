@@ -5,9 +5,35 @@
     <link rel="stylesheet" type="text/css" href="css/_settings.css">
     <link rel="stylesheet" type="text/css" href="css/foundation.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>Backbone Baseline</title>
+    <title>Fluffers</title>
   </head>
   <body>
+
+    <header>
+      <h1>movies!</h1>
+    </header>
+    <main>
+      <section id='movie'></section>
+      <section id='movie-list'></section>
+      <section id='new-movie'></section>
+    </main>
+
+    <!-- Templates -->
+
+    <script id="movie-card-template" type="text/template">
+      <li><%- movie.name %></li>
+    </script>
+
+    <script id="movie-info-template" type="text/template">
+      <h3>Name: <%- movie.name %></h3>
+      <h4>Age: <%- movie.age %></h4>
+      <h4>Breed: <%- movie.breed %></h4>
+      <% if(movie.vaccinated){ %>
+        <input type="checkbox" name="vaccinated" checked="checked">
+      <% }else{ %>
+        <input type="checkbox" name="vaccinated">
+      <% } %>
+    </script>
 
     <script src="/app.bundle.js"></script>
 
