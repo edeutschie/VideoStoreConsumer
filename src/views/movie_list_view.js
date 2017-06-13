@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import _ from 'underscore';
 import Backbone from 'backbone';
-import PetView from './movie_view';
+import MovieView from './movie_view';
 
 var MovieListView = Backbone.View.extend({
   initialize: function(options) {
@@ -15,11 +15,11 @@ var MovieListView = Backbone.View.extend({
       this.addMovie(rawMovie);
     }, this);
 
-    this.input = {
-      name: this.$('.new-movie input[name="name"]'),
+    // this.input = {
+      // title: this.$('.new-movie input[name="name"]'),
       // age: this.$('.new-movie input[name="age"]'),
       // breed: this.$('.new-movie input[name="breed"]')
-    };
+    // };
 
     this.listenTo(this.model, 'add', this.addMovie);
     this.listenTo(this.model, 'update', this.render);
@@ -55,7 +55,7 @@ var MovieListView = Backbone.View.extend({
 
   addMovie: function(pet) {
     var movieView = new MovieView({
-      model: pet,
+      model: movie,
       template: this.movieTemplate
     });
 
@@ -68,7 +68,7 @@ var MovieListView = Backbone.View.extend({
 
   getInput: function() {
     var movie = {
-      name: this.input.name.val()//,
+      name: this.input.title.val()//,
       // age: this.input.age.val(),
       // breed: this.input.breed.val()
     };
@@ -80,7 +80,7 @@ var MovieListView = Backbone.View.extend({
 
   clearInput: function(event) {
     console.log("clearInput called!");
-    this.input.name.val('')//;
+    this.input.title.val('')//;
     // this.input.age.val('');
     // this.input.breed.val('');
   }

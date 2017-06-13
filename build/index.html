@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="css/_settings.css">
     <link rel="stylesheet" type="text/css" href="css/foundation.css">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>Fluffers</title>
+    <title>Movies</title>
   </head>
   <body>
 
@@ -14,18 +14,20 @@
     </header>
     <main>
       <section id='movie'></section>
-      <section id='movie-list'></section>
+      <section id='movie-list'>
+        <ul class="movie-card"></ul>
+      </section>
       <section id='new-movie'></section>
     </main>
 
     <!-- Templates -->
 
     <script id="movie-card-template" type="text/template">
-      <li><%- movie.name %></li>
+      <li><%- movie.title %></li>
     </script>
 
     <script id="movie-info-template" type="text/template">
-      <h3>Name: <%- movie.name %></h3>
+      <h3>Title: <%- movie.title %></h3>
       <h4>Age: <%- movie.age %></h4>
       <h4>Breed: <%- movie.breed %></h4>
       <% if(movie.vaccinated){ %>

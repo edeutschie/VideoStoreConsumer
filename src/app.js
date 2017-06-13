@@ -6,7 +6,7 @@ import _ from 'underscore';
 import MovieList from 'app/collections/movie_list';
 import MovieListView from 'app/views/movie_list_view';
 
-var petList = new PetList();
+var movieList = new MovieList();
 // ready to go
 $(document).ready(function() {
 
