@@ -3,8 +3,8 @@
 // Import jQuery & Underscore
 import $ from 'jquery';
 import _ from 'underscore';
-import MovieList from 'app/collections/movie_list';
-import MovieListView from 'app/views/movie_list_view';
+import MovieList from 'collections/movie_list';
+import MovieListView from 'views/movie_list_view';
 
 var movieList = new MovieList();
 // ready to go
@@ -16,7 +16,7 @@ $(document).ready(function() {
 
   var options = {
     el: $("#movie-list"),
-    model: petList
+    model: pet
   };
 
   var movieListDisplay = new MovieListView(options);
