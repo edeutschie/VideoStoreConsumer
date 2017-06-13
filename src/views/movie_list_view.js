@@ -53,7 +53,7 @@ var MovieListView = Backbone.View.extend({
     this.clearInput();
   },
 
-  addMovie: function(pet) {
+  addMovie: function(movie) {
     var movieView = new MovieView({
       model: movie,
       template: this.movieTemplate
@@ -85,7 +85,7 @@ var MovieListView = Backbone.View.extend({
     // this.input.breed.val('');
   }
 
-    // this.listenTo(pet, 'edit', this.editPet);
+    // this.listenTo(movie, 'edit', this.editPet);
 
 
 });
