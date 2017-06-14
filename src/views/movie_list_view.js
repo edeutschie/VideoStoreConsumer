@@ -73,9 +73,10 @@
     var searchList = new MovieList(),
       query = this.$('#title').val(),
       url = this.model.url,
-     result =searchList.sync('read', 'movie', {url:url + "?query=" +query})
-     console.log(this);
-     var searchListView = new MovieListView({el: $('main'),model: movieList});
+     result =searchList.fetch({url:url + "?query=" +query})
+     console.log(searchList);
+      var options = {el: $('main'),model: searchList}
+      searchListView = new MovieListView(options);
      searchListView.render()
 
 
