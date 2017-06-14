@@ -75,7 +75,7 @@
       url = this.model.url,
      result =searchList.fetch({url:url + "?query=" +query})
      console.log(searchList);
-      var options = {el: $('main'),model: searchList}
+      var options = {el: $('main'),model: searchList},
       searchListView = new MovieListView(options);
      searchListView.render()
 
