@@ -7,6 +7,8 @@
   var MovieListView = Backbone.View.extend({
     initialize: function(options) {
       this.movieTemplate = _.template($("#movie-card-template").html());
+      this.movieDetailTemplate = _.template($("#movie-info-template").html());
+
 
       this.listElement = this.$(".movie-card");
 
@@ -37,7 +39,6 @@
 
         this.listElement.append(movieView.$el);
       }, this);
-      // console.log(this.model);
 
       return this;
     },
@@ -63,7 +64,7 @@
         template: this.movieTemplate
       });
 
-      // this.listenTo(petView, 'showDetailsClicked', this.showPetDetails);
+      this.listenTo(movieView, 'showDetailsClicked', this.showMovieDetails);
 
       this.listenTo(movie, 'edit', this.editMovie);
 
@@ -73,15 +74,17 @@
     showMovieDetails: function(event) {
       event.preventDefault();
       console.log("in Show Movie Details");
+      console.log(this);
+      this.render();
     },
 
     getInput: function() {
     var searchList = new MovieList(),
       query = this.$('#title').val(),
       url = this.model.url,
-     result =searchList.fetch({url:url + "?query=" +query})
-     console.log(searchList);
-      var options = {el: $('main'),model: searchList},
+      result = searchList.fetch({url:url + "?query=" + query})
+    console.log(searchList);
+    var options = {el: $('main'),model: searchList},
       searchListView = new MovieListView(options);
      searchListView.render()
 

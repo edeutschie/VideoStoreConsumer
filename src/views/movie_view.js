@@ -8,9 +8,7 @@ var MovieView = Backbone.View.extend({
   },
 
   render: function() {
-    // console.log(this.model.attributes.name);
     var html = this.template({movie: this.model.toJSON()});
-    // console.log(info);
     this.$el.html(html);
 
     this.delegateEvents();
@@ -18,7 +16,7 @@ var MovieView = Backbone.View.extend({
     return this;
   },
   events: {
-    // "click .show-details": "onClick",
+    "click .show-details": "onClick",
     "click .delete-button": "deleteMovie",
   },
   deleteMovie: function(event) {
