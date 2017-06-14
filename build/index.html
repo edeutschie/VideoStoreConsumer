@@ -13,9 +13,19 @@
       <h1>movies!</h1>
     </header>
     <main>
-      <section id='movie'></section>
+      <section class="row">
+        <section class= "columns large-4 small-12" id='movie'>
+
+        </section>
+        <section class="search-box">
+          <label for="title"> Title</label>
+          <input type="text" name="title"></input>
+          <button type="submit" class="button">Search</button>
+
+        </section>
+      </section>
       <section id='movie-list'>
-        <ul class="movie-card"></ul>
+        <section class="movie-card"></section>
       </section>
       <section id='new-movie'></section>
     </main>
@@ -23,7 +33,7 @@
     <!-- Templates -->
 
     <script id="movie-card-template" type="text/template">
-      <li><%- movie.title %></li>
+      <article><%- movie.title %></article>
     </script>
 
     <script id="movie-info-template" type="text/template">
