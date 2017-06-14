@@ -7,6 +7,7 @@ import MovieList from 'collections/movie_list';
 import MovieListView from 'views/movie_list_view';
 
 var movieList = new MovieList();
+
 // ready to go
 $(document).ready(function() {
 
@@ -15,7 +16,7 @@ $(document).ready(function() {
   movieList.fetch();
 
   var options = {
-    el: $("#movie-list"),
+    el: $('main'),
     model: movieList
   };
 
