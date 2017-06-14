@@ -43,7 +43,8 @@
     },
 
     events: {
-      'click #search': 'getInput'
+      'click #search': 'getInput',
+      'click .movie-poster': 'showMovieDetails'
       // 'submit .new-movie': 'createMovie',
       // 'click .clear-button': 'clearInput'
     },
@@ -67,6 +68,11 @@
       this.listenTo(movie, 'edit', this.editMovie);
 
       this.movieList.push(movieView);
+    },
+
+    showMovieDetails: function(event) {
+      event.preventDefault();
+      console.log("in Show Movie Details");
     },
 
     getInput: function() {
