@@ -36,9 +36,17 @@ aside label {
 
 div {
   display: inline;
+  border-style: solid;
+  border-color: black;
 }
-/*
+
+.movie-card div {
+  height: 100px;
+  border: solid, black, 2px;
+  border-style: solid;
+  border-color: black;
+}
+
 * {
   border-style: solid;
 }
-*/

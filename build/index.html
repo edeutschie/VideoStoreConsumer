@@ -13,39 +13,53 @@
       <h1>movies!</h1>
     </header>
     <main>
-      <section class="row">
-        <section class= "columns large-4 small-12" id='movie'>
 
-        </section>
-        <div class="search-box">
+
+      <section class="row">
+        <div class="search-box columns small-12 large-4">
           <label for="title"> Title</label>
           <input type="text" name="title" id="title"></input>
           <button type="submit" class="button woogs" id="search">Search</button>
 
         </div>
+        <section class="columns large-4 small-12" id='movie'>
+
+
+        </section>
       </section>
 
-      <section id='movie-list'>
+
+        <section class="row small-up-2 medium-up-4 large-up-6">
+      <!-- <section id='movie-list'></section> -->
+
+
+      <section class="column column-block">
+      <a href="">
         <section class="movie-card"></section>
+      </a>
+      </section>
       </section>
       <section id='new-movie'></section>
     </main>
 
     <!-- Templates -->
 
-    <script id="movie-card-template" type="text/template">
-      <article><%- movie.title %></article>
-    </script>
+
+      <script id="movie-card-template" type="text/template">
+          <%- movie.title %>
+      </script>
 
     <script id="movie-info-template" type="text/template">
+      <img src=<%-movie.image_url%>/>
       <h3>Title: <%- movie.title %></h3>
-      <h4>Age: <%- movie.age %></h4>
-      <h4>Breed: <%- movie.breed %></h4>
+      <h4>Synopsis: <%- movie.overview %></h4>
+      <h4>Release Date: <%- movie.release_date %></h4>
+<!--
       <% if(movie.vaccinated){ %>
         <input type="checkbox" name="vaccinated" checked="checked">
       <% }else{ %>
         <input type="checkbox" name="vaccinated">
-      <% } %>
+      <% } %> -->
     </script>
 
     <script src="/app.bundle.js"></script>
