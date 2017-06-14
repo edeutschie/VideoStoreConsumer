@@ -2,10 +2,11 @@ import Backbone from 'backbone';
 
 var  Movie = Backbone.Model.extend({
   defaults: {
-    title: "Avvo"  
+    title: "Avvo"
   },
   initialize: function(options) {
-    console.log("Created new movie with options ");
+    // console.log(this);
+
   }
   // toggleComplete: function() {
   //   var newStatus = !(this.get('complete'));
