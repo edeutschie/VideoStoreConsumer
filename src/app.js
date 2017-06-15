@@ -11,7 +11,7 @@ var movieList = new MovieList();
 // ready to go
 $(document).ready(function() {
 
-  $('section.main-content').append('<p>Hello World!</p>');
+  // $('section.main-content').append('<p>Hello World!</p>');
 
   movieList.fetch();
 

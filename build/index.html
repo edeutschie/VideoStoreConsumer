@@ -16,7 +16,7 @@
 
 
       <section class="row">
-        <div class="search-box columns small-12 large-4">
+        <div class="search-box columns small-12 medium-4 large-4">
           <label for="title"> Title</label>
           <input type="text" name="title" id="title"></input>
           <button type="submit" class="button woogs" id="search">Search</button>
@@ -34,8 +34,7 @@
 
 
       <section class="column column-block">
-      <a href="" class="movie-poster">
-        <!-- <a href="" class="movie-poster" data-movieid = <%- movie.title%>> -->
+      <!-- <a href="" class="movie-poster"> -->
         <section class="movie-card"></section>
       </a>
       </section>
@@ -47,7 +46,9 @@
 
 
       <script id="movie-card-template" type="text/template">
+        <a data-url= <%- movie.image_url %> >
           <%- movie.title %>
+        </a>
       </script>
 
     <script id="movie-info-template" type="text/template">

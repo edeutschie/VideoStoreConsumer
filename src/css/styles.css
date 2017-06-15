@@ -2,6 +2,7 @@
 
 main {
     background: lightblue;
+    /*background-size: contain;*/
 }
 
 header {

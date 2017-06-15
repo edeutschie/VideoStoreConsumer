@@ -9,7 +9,6 @@
       this.movieTemplate = _.template($("#movie-card-template").html());
       this.movieDetailTemplate = _.template($("#movie-info-template").html());
 
-
       this.listElement = this.$(".movie-card");
 
       this.movieList = [];
@@ -31,13 +30,14 @@
 
     render: function() {
       // var self = this;
-      console.log("here");
+      // console.log("here");
       this.listElement.empty();
 
       this.movieList.forEach(function(movieView){
         movieView.render();
 
         this.listElement.append(movieView.$el);
+        console.log(this.model);
       }, this);
 
       return this;
@@ -73,17 +73,22 @@
 
     showMovieDetails: function(event) {
       event.preventDefault();
-      console.log("in Show Movie Details");
+      // find a way to get the instance of the model object I want
+      movieView.showMovieDetails();
+      console.log("in listview");
+      var html = this.movieDetailTemplate({movie: this.model.toJSON()});
+      // $("#movie").append(html);
       console.log(this);
-      this.render();
+    //
+    //
     },
 
     getInput: function() {
     var searchList = new MovieList(),
       query = this.$('#title').val(),
       url = this.model.url,
-      result = searchList.fetch({url:url + "?query=" + query})
-    console.log(searchList);
+      result = searchList.fetch({url:url + "?query=" + query});
+    // console.log(searchList);
     var options = {el: $('main'),model: searchList},
       searchListView = new MovieListView(options);
      searchListView.render()
