@@ -103,8 +103,6 @@
     clearInput: function(event) {
       console.log("clearInput called!");
       this.input.title.val('');
-      // this.input.age.val('');
-      // this.input.breed.val('');
     }
 
       // this.listenTo(movie, 'edit', this.editPet);

@@ -38,6 +38,7 @@ div {
   display: inline;
   border-style: solid;
   border-color: black;
+  margin: .5em;
 }
 
 .movie-card div {
@@ -45,6 +46,7 @@ div {
   border: solid, black, 2px;
   border-style: solid;
   border-color: black;
+  margin: .5em;
 }
 
 * {
