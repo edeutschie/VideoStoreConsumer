@@ -1,6 +1,7 @@
 import Backbone from 'backbone';
 
 var MovieView = Backbone.View.extend({
+  tagName: 'li',
   initialize: function(options) {
     this.template = options.template;
 
