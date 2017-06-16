@@ -52,6 +52,11 @@
 
       </script>
 
+      <script id="search-card-template" type="text/template">
+        <%- movie.title %>
+        <button type="submit" class="button" id="rent">Rent</button>
+      </script>
+      
       <script id="movie-info-template" type="text/template">
       <img src=<%-movie.image_url%>/>
       <h3>Title: <%- movie.title %></h3>

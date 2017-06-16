@@ -4,7 +4,7 @@ var MovieView = Backbone.View.extend({
   tagName: 'li',
   initialize: function(options) {
     this.template = options.template;
-
+    this.movieSearchTemplate = options.movieSearchTemplate;
     this.listenTo(this.model, 'change', this.render);
   },
 
@@ -19,6 +19,7 @@ var MovieView = Backbone.View.extend({
   events: {
     "click .show-details": "onClick",
     "click .delete-button": "deleteMovie",
+    // "click #rent: "
   },
   deleteMovie: function(event) {
     console.log("deleteMovie called!");
@@ -26,6 +27,14 @@ var MovieView = Backbone.View.extend({
       console.log("going to delete it!");
       this.model.destroy();
     }
+  },
+  searchRender: function(){
+    var html = this.movieSearchTemplate({movie: this.model.toJSON()});
+    this.$el.html(html);
+
+    this.delegateEvents();
+
+    return this;
   }
 });
 

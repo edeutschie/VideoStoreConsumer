@@ -1,113 +1,126 @@
-  import $ from 'jquery';
-  import _ from 'underscore';
-  import Backbone from 'backbone';
-  import MovieView from './movie_view';
-  import MovieList from '../collections/movie_list';
+import $ from 'jquery';
+import _ from 'underscore';
+import Backbone from 'backbone';
+import MovieView from './movie_view';
+import MovieList from '../collections/movie_list';
 
-  var MovieListView = Backbone.View.extend({
-    initialize: function(options) {
-      this.movieTemplate = _.template($("#movie-card-template").html());
-      this.movieDetailTemplate = _.template($("#movie-info-template").html());
+var MovieListView = Backbone.View.extend({
+  initialize: function(options) {
+    this.movieTemplate = _.template($("#movie-card-template").html());
+    this.movieDetailTemplate = _.template($("#movie-info-template").html());
+    this.movieSearchTemplate= _.template($("#search-card-template").html());
+    this.listElement = this.$(".movie-card");
 
+    this.movieList = [];
 
-      this.listElement = this.$(".movie-card");
+    this.model.forEach(function(rawMovie) {
+      this.addMovie(rawMovie);
+    }, this);
 
-      this.movieList = [];
+    // this.input = {
+    // title: this.$('.new-movie input[name="name"]'),
+    // age: this.$('.new-movie input[name="age"]'),
+    // breed: this.$('.new-movie input[name="breed"]')
+    // };
+    this.listenTo(this.model, '#search', this.getInput);
+    this.listenTo(this.model, 'add', this.addMovie);
+    this.listenTo(this.model, 'update', this.render);
+    // this.listenTo(this.model, 'remove', this.removeMovie);
+  },
 
-      this.model.forEach(function(rawMovie) {
-        this.addMovie(rawMovie);
-      }, this);
+  render: function() {
+    // var self = this;
+    console.log("here");
+    this.listElement.empty();
 
-      // this.input = {
-        // title: this.$('.new-movie input[name="name"]'),
-        // age: this.$('.new-movie input[name="age"]'),
-        // breed: this.$('.new-movie input[name="breed"]')
-      // };
-      // this.listenTo(this.model, '#search', this.getInput);
-      this.listenTo(this.model, 'add', this.addMovie);
-      this.listenTo(this.model, 'update', this.render);
-      // this.listenTo(this.model, 'remove', this.removeMovie);
-    },
+    this.movieList.forEach(function(movieView){
+      movieView.render();
 
-    render: function() {
-      // var self = this;
-      console.log("here");
-      this.listElement.empty();
+      this.listElement.append(movieView.$el);
+    }, this);
 
-      this.movieList.forEach(function(movieView){
-        movieView.render();
+    return this;
+  },
 
-        this.listElement.append(movieView.$el);
-      }, this);
+  events: {
+    'click #search': 'getInput',
+    'click .movie-poster': 'showMovieDetails'
+    // 'submit .new-movie': 'createMovie',
+    // 'click .clear-button': 'clearInput'
+  },
 
-      return this;
-    },
+  createMovie: function(event) {
+    event.preventDefault();
 
-    events: {
-      'click #search': 'getInput',
-      'click .movie-poster': 'showMovieDetails'
-      // 'submit .new-movie': 'createMovie',
-      // 'click .clear-button': 'clearInput'
-    },
+    var rawMovie = this.getInput();
+    this.model.create(rawMovie);
+    this.clearInput();
+  },
 
-    createMovie: function(event) {
-      event.preventDefault();
+  addMovie: function(movie) {
+    var movieView = new MovieView({
+      model: movie,
+      template: this.movieTemplate
+    });
 
-      var rawMovie = this.getInput();
-      this.model.create(rawMovie);
-      this.clearInput();
-    },
+    this.listenTo(movieView, 'showDetailsClicked', this.showMovieDetails);
 
-    addMovie: function(movie) {
-      var movieView = new MovieView({
-        model: movie,
-        template: this.movieTemplate
-      });
+    this.listenTo(movie, 'edit', this.editMovie);
 
-      this.listenTo(movieView, 'showDetailsClicked', this.showMovieDetails);
+    this.movieList.push(movieView);
+  },
 
-      this.listenTo(movie, 'edit', this.editMovie);
+  showMovieDetails: function(event) {
+    event.preventDefault();
+    console.log("in Show Movie Details");
+    console.log(this);
+    this.render();
+  },
 
-      this.movieList.push(movieView);
-    },
-
-    showMovieDetails: function(event) {
-      event.preventDefault();
-      console.log("in Show Movie Details");
-      console.log(this);
-      this.render();
-    },
-
-    getInput: function() {
+  getInput: function() {
     var searchList = new MovieList(),
-      query = this.$('#title').val(),
-      url = this.model.url,
-      result = searchList.fetch({url:url + "?query=" + query})
+    query = this.$('#title').val(),
+    url = this.model.url,
+    result = searchList.fetch({url:url + "?query=" + query});
     console.log(searchList);
     var options = {el: $('main'),model: searchList},
-      searchListView = new MovieListView(options);
-     searchListView.render()
+    searchListView = new MovieListView(options);
+    searchListView.searchRender();
 
 
 
-      // console.log('a');
-        // age: this.input.age.val(),
-        // breed: this.input.breed.val()
+    // console.log('a');
+    // age: this.input.age.val(),
+    // breed: this.input.breed.val()
 
-      // console.log("Searched Something:");
-      // console.log(movie);
+    // console.log("Searched Something:");
+    // console.log(movie);
 
-      // return movie;
-    },
+    // return movie;
+  },
 
-    clearInput: function(event) {
-      console.log("clearInput called!");
-      this.input.title.val('');
-    }
+  searchRender: function() {
+    // var self = this;
+    console.log("in searchRender");
+    this.listElement.empty();
 
-      // this.listenTo(movie, 'edit', this.editPet);
+    this.movieList.forEach(function(movieView){
+      movieView.searchRender();
+
+      this.listElement.append(movieView.$el);
+    }, this);
+
+    return this;
+  },
+
+  clearInput: function(event) {
+    console.log("clearInput called!");
+    this.input.title.val('');
+  }
+
+  // this.listenTo(movie, 'edit', this.editPet);
 
 
-  });
+});
 
-  export default MovieListView;
+export default MovieListView;
