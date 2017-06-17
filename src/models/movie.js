@@ -2,7 +2,8 @@ import Backbone from 'backbone';
 
 var  Movie = Backbone.Model.extend({
   defaults: {
-    type : "rental"
+    type : "rental",
+    url:'http://localhost:3000/movies',
   },
   initialize: function(options) {
 

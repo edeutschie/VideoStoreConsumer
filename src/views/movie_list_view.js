@@ -66,9 +66,9 @@ var MovieListView = Backbone.View.extend({
       movieSearchTemplate : this.movieSearchTemplate
     });
 
-    this.listenTo(movieView, 'showDetailsClicked', this.showMovieDetails);
+    // this.listenTo(movieView, 'showDetailsClicked', this.showMovieDetails);
     // this.listenTo(movieView,'getInput') find the right callback
-    this.listenTo(movie, 'edit', this.editMovie);
+    // this.listenTo(movie, 'edit', this.editMovie);
 
     this.movieList.push(movieView);
   },
@@ -76,13 +76,10 @@ var MovieListView = Backbone.View.extend({
   showMovieDetails: function(event) {
     event.preventDefault();
     console.log("in Show Movie Details");
-    console.log(this);
+    // console.log(this);
     this.render();
   },
-  searchRender: function(collection, response, options) {
-      collection.forEach(function(movie){
-        movie.set({type:"search"})
-      })
+
       // this.listElement.empty();
 
     //   this.movieList.forEach(function(movieView){
@@ -92,8 +89,8 @@ var MovieListView = Backbone.View.extend({
     //   this.listElement.append(movieView.$el);
     // }, this);
 
-    return this;
-  },
+  //   return this;
+  // },
 
   getInput: function() {
     var searchList = new MovieList(),
@@ -104,23 +101,9 @@ var MovieListView = Backbone.View.extend({
      success:this.searchRender
    }
  );
- console.log(this);
-  //  console.log(searchList.models);
-
-    // searchList.models.forEach(function(){console.log("trying");},this);
-    //
-    var options = {el: $('main'),model: searchList},
-    searchListView = new MovieListView(options);
-    // searchListView.searchRender();
-    console.log(searchListView);
-    searchListView.movieList.forEach(function(model){
-      console.log("word");
-      // this.model.set({type:"search"})
-    },this)
-
+ var options = {el: $('main'),model: searchList},
+ searchListView = new MovieListView(options);
   },
-
-
 
   clearInput: function(event) {
     console.log("clearInput called!");
