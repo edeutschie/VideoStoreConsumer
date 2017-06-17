@@ -9,10 +9,19 @@ var MovieView = Backbone.View.extend({
   },
 
   render: function() {
-    var html = this.template({movie: this.model.toJSON()});
-    this.$el.html(html);
-
-    this.delegateEvents();
+    console.log(this.model.attributes.type);
+    if (this.model.attributes.type === "rental") {
+      let html = this.template({movie: this.model.toJSON()});
+      this.$el.html(html);
+      // console.log("in movie render");
+      this.delegateEvents();
+    }else if (this.model.attributes.type === "search"){
+      let html = this.movieSearchTemplate({movie: this.model.toJSON()});
+      console.log("in search render");
+      console.log(this.model);
+      this.$el.html(html);
+      this.delegateEvents();
+    }
 
     return this;
   },
@@ -27,14 +36,6 @@ var MovieView = Backbone.View.extend({
       console.log("going to delete it!");
       this.model.destroy();
     }
-  },
-  searchRender: function(){
-    var html = this.movieSearchTemplate({movie: this.model.toJSON()});
-    this.$el.html(html);
-
-    this.delegateEvents();
-
-    return this;
   }
 });
 

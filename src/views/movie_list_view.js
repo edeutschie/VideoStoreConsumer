@@ -11,6 +11,7 @@ var MovieListView = Backbone.View.extend({
     this.movieSearchTemplate= _.template($("#search-card-template").html());
     this.listElement = this.$(".movie-card");
 
+
     this.movieList = [];
 
     this.model.forEach(function(rawMovie) {
@@ -35,6 +36,7 @@ var MovieListView = Backbone.View.extend({
 
     this.movieList.forEach(function(movieView){
       movieView.render();
+      // console.log(movieView.model);
 
       this.listElement.append(movieView.$el);
     }, this);
@@ -60,11 +62,12 @@ var MovieListView = Backbone.View.extend({
   addMovie: function(movie) {
     var movieView = new MovieView({
       model: movie,
-      template: this.movieTemplate
+      template: this.movieTemplate,
+      movieSearchTemplate : this.movieSearchTemplate
     });
 
     this.listenTo(movieView, 'showDetailsClicked', this.showMovieDetails);
-
+    // this.listenTo(movieView,'getInput') find the right callback
     this.listenTo(movie, 'edit', this.editMovie);
 
     this.movieList.push(movieView);
@@ -76,42 +79,48 @@ var MovieListView = Backbone.View.extend({
     console.log(this);
     this.render();
   },
+  searchRender: function(collection, response, options) {
+      collection.forEach(function(movie){
+        movie.set({type:"search"})
+      })
+      // this.listElement.empty();
+
+    //   this.movieList.forEach(function(movieView){
+    //   movieView.searchRender();
+    //   console.log("word");
+    //
+    //   this.listElement.append(movieView.$el);
+    // }, this);
+
+    return this;
+  },
 
   getInput: function() {
     var searchList = new MovieList(),
     query = this.$('#title').val(),
-    url = this.model.url,
-    result = searchList.fetch({url:url + "?query=" + query});
-    console.log(searchList);
+    url = this.model.url;
+   searchList.fetch({
+     url:url + "?query=" + query,
+     success:this.searchRender
+   }
+ );
+ console.log(this);
+  //  console.log(searchList.models);
+
+    // searchList.models.forEach(function(){console.log("trying");},this);
+    //
     var options = {el: $('main'),model: searchList},
     searchListView = new MovieListView(options);
-    searchListView.searchRender();
+    // searchListView.searchRender();
+    console.log(searchListView);
+    searchListView.movieList.forEach(function(model){
+      console.log("word");
+      // this.model.set({type:"search"})
+    },this)
 
-
-
-    // console.log('a');
-    // age: this.input.age.val(),
-    // breed: this.input.breed.val()
-
-    // console.log("Searched Something:");
-    // console.log(movie);
-
-    // return movie;
   },
 
-  searchRender: function() {
-    // var self = this;
-    console.log("in searchRender");
-    this.listElement.empty();
 
-    this.movieList.forEach(function(movieView){
-      movieView.searchRender();
-
-      this.listElement.append(movieView.$el);
-    }, this);
-
-    return this;
-  },
 
   clearInput: function(event) {
     console.log("clearInput called!");
