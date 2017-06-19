@@ -26,15 +26,18 @@ var MovieListView = Backbone.View.extend({
     this.listenTo(this.model, '#search', this.getInput);
     this.listenTo(this.model, 'add', this.addMovie);
     this.listenTo(this.model, 'update', this.render);
+    // this.listenTo(this.model, 'library', this.render);
     // this.listenTo(this.model, 'remove', this.removeMovie);
   },
 
   render: function() {
     // var self = this;
-    console.log("here");
+    console.log("here!");
     this.listElement.empty();
 
+
     this.movieList.forEach(function(movieView){
+      // movieView.model.set({type:"rental"});
       movieView.render();
       // console.log(movieView.model);
 
@@ -47,6 +50,7 @@ var MovieListView = Backbone.View.extend({
   events: {
     'click #search': 'getInput',
     'click .movie-poster': 'showMovieDetails'
+    // 'click #library': 'render'
     // 'submit .new-movie': 'createMovie',
     // 'click .clear-button': 'clearInput'
   },

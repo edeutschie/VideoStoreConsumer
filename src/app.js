@@ -23,13 +23,9 @@ $(document).ready(function() {
   var movieListDisplay = new MovieListView(options);
   movieListDisplay.render();
 
-});
 
-
-
-
-
-$(document).ready(function() {
-
+  $('#library').click(function() {
+    movieList.fetch();
+  });
 
 });
