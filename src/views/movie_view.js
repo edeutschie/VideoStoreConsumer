@@ -18,7 +18,8 @@ var MovieView = Backbone.View.extend({
   },
   events: {
     "click .show-details": "onClick",
-    "click .delete-button": "deleteMovie",
+    // "click .delete-button": "deleteMovie",
+    // "click"
   },
   deleteMovie: function(event) {
     console.log("deleteMovie called!");
