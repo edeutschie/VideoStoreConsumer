@@ -2,9 +2,11 @@ import Backbone from 'backbone';
 
 var  Movie = Backbone.Model.extend({
   defaults: {
-    title: "Avvo"
+    type : "rental",
+    url:'http://localhost:3000/movies',
   },
   initialize: function(options) {
+
     // console.log(this);
 
   }
