@@ -28,7 +28,7 @@ var MovieView = Backbone.View.extend({
   events: {
     "click .show-details": "onClick",
     "click .delete-button": "deleteMovie",
-    "click #rent": "orderMovie",
+    "click #add": "orderMovie",
     // "click #rent: "
 
   },
