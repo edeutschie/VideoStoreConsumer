@@ -108,7 +108,13 @@ var MovieListView = Backbone.View.extend({
   clearInput: function(event) {
     console.log("clearInput called!");
     this.input.title.val('');
-  }
+  },
+
+  searchRender: function(collection, response, options) {
+       collection.forEach(function(movie){
+          movie.set({type:"search"})
+        })
+ },
 
   // this.listenTo(movie, 'edit', this.editPet);
 
