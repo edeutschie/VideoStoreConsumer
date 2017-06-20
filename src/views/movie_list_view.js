@@ -48,11 +48,7 @@ var MovieListView = Backbone.View.extend({
 
     }, this,
 
-
-
   );
-
-
 
     return this;
   },
@@ -61,10 +57,16 @@ var MovieListView = Backbone.View.extend({
     'click #search': 'getInput',
     // 'click #open': 'showMovieDetails',
     'click #close': 'hideMovieDetails',
-    'click #add': 'addMovie'
+    'click #order-movie': 'orderMovie'
     // 'click #library': 'render'
     // 'submit .new-movie': 'createMovie'
     // 'click .clear-button': 'clearInput'
+  },
+
+  orderMovie: function(event) {
+    if (this.movieInModal) {
+      this.movieInModal.orderMovie();
+    }
   },
 
   createMovie: function(event) {
@@ -93,6 +95,8 @@ var MovieListView = Backbone.View.extend({
     // event.preventDefault();
     console.log("in Show Movie Details");
 
+    this.movieInModal = movieView;
+
     var movieDetailsTemplate = this.movieDetailTemplate({movie: movieView.model.toJSON()});
     $('#order-form').html(movieDetailsTemplate);
     $("#order-form").show();
@@ -100,6 +104,7 @@ var MovieListView = Backbone.View.extend({
   },
 
   hideMovieDetails: function(event) {
+    this.movieInModal = undefined;
     $("#order-form").hide();
   },
 

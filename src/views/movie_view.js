@@ -46,7 +46,7 @@ var MovieView = Backbone.View.extend({
     // I don't think we can preventDefault on a button that was
     // inserted with the template.  It will just rerende whenever
     // the user presses it
-    event.preventDefault()
+    // event.preventDefault();
     console.log("orderMovie called");
     var selectedMovie = this.model
     var options = {
@@ -62,13 +62,12 @@ var MovieView = Backbone.View.extend({
       this.model.emulateHTTP = true;
       this.model.sync("create",selectedMovie,[options]);
       $('#order-form').hide();
+      // movieList.fetch();
 
 
   },
   syncSuccessCallback: function(collection, response, options){
-    console.log(collection);
-    console.log(response);
-    console.log(options);
+    console.log("in syncSuccessCallback");
   },
 
   openForm: function(event) {
