@@ -31,7 +31,7 @@ var MovieListView = Backbone.View.extend({
   },
 
   render: function() {
-    // var self = this;
+    var self = this;
     console.log("here!");
     this.listElement.empty();
 
@@ -42,14 +42,23 @@ var MovieListView = Backbone.View.extend({
       // console.log(movieView.model);
 
       this.listElement.append(movieView.$el);
-    }, this);
+
+      self.listenTo(movieView, 'openorderform', self.showMovieDetails);
+
+    }, this,
+
+
+
+  );
+
+
 
     return this;
   },
 
   events: {
     'click #search': 'getInput',
-    'click .movie-poster': 'showMovieDetails'
+    'click #open': 'showMovieDetails'
     // 'click #library': 'render'
     // 'submit .new-movie': 'createMovie',
     // 'click .clear-button': 'clearInput'
@@ -77,11 +86,17 @@ var MovieListView = Backbone.View.extend({
     this.movieList.push(movieView);
   },
 
-  showMovieDetails: function(event) {
-    event.preventDefault();
+  showMovieDetails: function(movieView) {
+    // event.preventDefault();
     console.log("in Show Movie Details");
     // console.log(this);
+    var movieDetailsTemplate = this.movieDetailTemplate(movieView.model.toJSON());
+    $('#movie-info-template').html(movieDetailsTemplate);
     this.render();
+  },
+
+  hideMovieDetails: function(event) {
+    $("#movie-info-template").hide();
   },
 
       // this.listElement.empty();

@@ -1,3 +1,5 @@
+import $ from 'jquery';
+import _ from 'underscore';
 import Backbone from 'backbone';
 
 var MovieView = Backbone.View.extend({
@@ -26,9 +28,10 @@ var MovieView = Backbone.View.extend({
     return this;
   },
   events: {
-    "click .show-details": "onClick",
-    "click .delete-button": "deleteMovie",
+    // "click .show-details": "onClick",
+    // "click .delete-button": "deleteMovie",
     "click #add": "orderMovie",
+    "click #open": "openForm"
     // "click #rent: "
 
   },
@@ -65,6 +68,12 @@ var MovieView = Backbone.View.extend({
     console.log(collection);
     console.log(response);
     console.log(options);
+  },
+
+  openForm: function(event) {
+    console.log("open form");
+    $('#order-form').show();
+    this.trigger('openorderform', this)
   }
 });
 
