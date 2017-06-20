@@ -37,6 +37,20 @@ aside label {
 div {
   display: inline;
 }
+
+#order-form {
+  z-index: 10;
+  position: fixed;
+  width: 30%;
+  height: 30%;
+  top: 30%;
+  left: 30%;
+  background-color: #538ca3;
+  text-align: center;
+  border: 1em solid white;
+  margin-left: 20%;
+  border-radius: 20%;
+}
 /*
 * {
   border-style: solid;

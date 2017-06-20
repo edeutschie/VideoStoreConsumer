@@ -8,6 +8,9 @@ import MovieListView from 'views/movie_list_view';
 
 var movieList = new MovieList();
 
+// $("#order-form").hide();
+
+
 // ready to go
 $(document).ready(function() {
 
@@ -23,6 +26,7 @@ $(document).ready(function() {
   var movieListDisplay = new MovieListView(options);
   movieListDisplay.render();
 
+  $("#order-form").hide();
 
   $('#library').click(function() {
     movieList.fetch();

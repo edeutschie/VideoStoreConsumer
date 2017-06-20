@@ -71,6 +71,7 @@ var MovieView = Backbone.View.extend({
   },
 
   openForm: function(event) {
+    event.preventDefault();
     console.log("open form");
     $('#order-form').show();
     this.trigger('openorderform', this)
