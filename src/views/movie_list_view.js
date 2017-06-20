@@ -44,6 +44,7 @@ var MovieListView = Backbone.View.extend({
       this.listElement.append(movieView.$el);
 
       self.listenTo(movieView, 'openorderform', self.showMovieDetails);
+      // self.listenTo(movieView, 'showModal', self.showContactInfo )
 
     }, this,
 
@@ -58,10 +59,11 @@ var MovieListView = Backbone.View.extend({
 
   events: {
     'click #search': 'getInput',
-    'click #open': 'showMovieDetails',
-    'click #close': 'hideMovieDetails'
+    // 'click #open': 'showMovieDetails',
+    'click #close': 'hideMovieDetails',
+    'click #add': 'addMovie'
     // 'click #library': 'render'
-    // 'submit .new-movie': 'createMovie',
+    // 'submit .new-movie': 'createMovie'
     // 'click .clear-button': 'clearInput'
   },
 
@@ -90,11 +92,11 @@ var MovieListView = Backbone.View.extend({
   showMovieDetails: function(movieView) {
     // event.preventDefault();
     console.log("in Show Movie Details");
-    // console.log(this);
-    var movieDetailsTemplate = this.movieDetailTemplate(movieView.model.toJSON());
+
+    var movieDetailsTemplate = this.movieDetailTemplate({movie: movieView.model.toJSON()});
     $('#order-form').html(movieDetailsTemplate);
     $("#order-form").show();
-    this.render();
+    // this.render();
   },
 
   hideMovieDetails: function(event) {

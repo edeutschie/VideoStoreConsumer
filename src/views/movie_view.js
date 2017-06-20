@@ -60,7 +60,8 @@ var MovieView = Backbone.View.extend({
       // console.log( this.model.attributes.url);
       // console.log(this.model.toJSON());
       this.model.emulateHTTP = true;
-      this.model.sync("create",selectedMovie,[options])
+      this.model.sync("create",selectedMovie,[options]);
+      $('#order-form').hide();
 
 
   },

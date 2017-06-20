@@ -40,16 +40,17 @@ div {
 
 #order-form {
   z-index: 10;
-  position: fixed;
-  width: 30%;
-  height: 30%;
+  /*position: fixed;*/
+  width: 50%;
+  height: 60%;
   top: 30%;
   left: 30%;
-  background-color: #538ca3;
+  background-color: gray;
   text-align: center;
-  border: 1em solid white;
+  /*border: solid black;*/
   margin-left: 20%;
-  border-radius: 20%;
+  margin-right: 20%;
+  border-radius: 5%;
 }
 /*
 * {
