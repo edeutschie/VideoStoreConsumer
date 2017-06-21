@@ -65,7 +65,8 @@ var MovieListView = Backbone.View.extend({
 
   orderMovie: function(event) {
     if (this.movieInModal) {
-      this.movieInModal.orderMovie();
+      var inventory = this.$('#inventory').val();
+      this.movieInModal.orderMovie(inventory);
     }
   },
 

@@ -24,7 +24,6 @@ var MovieView = Backbone.View.extend({
       this.$el.html(html);
       this.delegateEvents();
     }
-
     return this;
   },
   events: {
@@ -42,17 +41,19 @@ var MovieView = Backbone.View.extend({
       this.model.destroy();
     }
   },
-  orderMovie: function(event){
+  orderMovie: function(inventory){
     // I don't think we can preventDefault on a button that was
-    // inserted with the template.  It will just rerende whenever
+    // inserted with the template.  It will just rerender whenever
     // the user presses it
     // event.preventDefault();
+
     console.log("orderMovie called");
     var selectedMovie = this.model
     var options = {
       success: 'syncSuccessCallback',
       url: this.model.attributes.url,
       method: "create",
+      inventory: inventory
 
       // data: this.model.toJSON(),
     }
@@ -62,6 +63,8 @@ var MovieView = Backbone.View.extend({
       this.model.emulateHTTP = true;
       this.model.sync("create",selectedMovie,[options]);
       $('#order-form').hide();
+      console.log(inventory);
+
       // movieList.fetch();
 
 
