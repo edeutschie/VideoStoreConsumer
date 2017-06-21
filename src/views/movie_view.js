@@ -10,21 +10,37 @@ var MovieView = Backbone.View.extend({
     this.listenTo(this.model, 'change', this.render);
   },
 
+
+
+
   render: function() {
-    // console.log(this.model.attributes.type);
+    const backgroundImageStyleProperty = "url(\" " + this.model.attributes.image_url.replace("https://image.tmdb.org/t/p/w185","")+ "\") ";
+    console.log(this.model.attributes.image_url);
     if (this.model.attributes.type === "rental") {
-      let html = this.template({movie: this.model.toJSON()});
+      //  console.log(backgroundImageStyleProperty);
+      var html = this.template({movie: this.model.toJSON()});
+       this.$el.css({
+         'background-image':backgroundImageStyleProperty,
+         'height': '278px',
+         'width': '185px',
+         'display': 'inline-block'
+       });
       this.$el.html(html);
       // console.log("in movie render");
       this.delegateEvents();
     }else if (this.model.attributes.type === "search"){
-      let html = this.movieSearchTemplate({movie: this.model.toJSON()});
-      // console.log("in search render");
-      // console.log(this.model);
+    const  backgroundImageStyleProperty = "url(\" " + this.model.attributes.image_url+ "\") ";
+    var html = this.movieSearchTemplate({movie: this.model.toJSON()});
+       this.$el.css({
+         'background-image':backgroundImageStyleProperty,
+         'height': '278px',
+         'width': '185px',
+         'display': 'inline-block'
+       });
       this.$el.html(html);
-      this.delegateEvents();
     }
-    return this;
+
+    return this
   },
   events: {
     // "click .show-details": "onClick",
