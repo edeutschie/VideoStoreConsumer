@@ -41,7 +41,7 @@ var MovieListView = Backbone.View.extend({
       movieView.render();
       // console.log(movieView.model);
 
-      this.listElement.append(movieView.$el);
+      this.listElement.prepend(movieView.$el);
 
       self.listenTo(movieView, 'openorderform', self.showMovieDetails);
       // self.listenTo(movieView, 'showModal', self.showContactInfo )
@@ -80,11 +80,16 @@ var MovieListView = Backbone.View.extend({
   },
 
   addMovie: function(movie) {
+    // console.log("this is movie");
+    // console.log(movie);
+    var cleanImage_url = movie.attributes.image_url.replace("https://image.tmdb.org/t/p/w185","");
     var movieView = new MovieView({
       model: movie,
       template: this.movieTemplate,
       movieSearchTemplate : this.movieSearchTemplate
     });
+
+    movie.set({image_url:cleanImage_url})
 
     // this.listenTo(movieView, 'showDetailsClicked', this.showMovieDetails);
     // this.listenTo(movieView,'getInput') find the right callback

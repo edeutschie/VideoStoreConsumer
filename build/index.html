@@ -35,11 +35,11 @@
       <!-- <section id='movie-list'></section> -->
 
 
-      <section >
-      <a href="" class="movie-poster">
+      <section class= "column large-10 medium-10 small-12">
+        
         <!-- <a href="" class="movie-poster" data-movieid = <%- movie.title%>> -->
         <section class="movie-card"></section>
-      </a>
+
       </section>
       </section>
       <section id='new-movie'></section>
@@ -49,13 +49,16 @@
 
 
       <script id="movie-card-template" type="text/template">
+          <img id= "poster" src=<%-movie.image_url%>>
+          <p>
           <%- movie.title %>
-          <%- movie.inventory %>
+          <!-- <%- movie.inventory %> -->
           <button type="submit" class="button" id="rent">Rent</button>
       </script>
 
       <script id="search-card-template" type="text/template">
-        <%- movie.title %>
+        <img src=<%-movie.image_url%>>
+        <p><%- movie.title %></p>
         <button type="submit" class="button" id="open">Movie Info</button>
       </script>
 

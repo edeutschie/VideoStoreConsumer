@@ -15,28 +15,29 @@ var MovieView = Backbone.View.extend({
 
   render: function() {
     const backgroundImageStyleProperty = "url(\" " + this.model.attributes.image_url.replace("https://image.tmdb.org/t/p/w185","")+ "\") ";
-    console.log(this.model.attributes.image_url);
+    // console.log(this.model.attributes.image_url);
     if (this.model.attributes.type === "rental") {
       //  console.log(backgroundImageStyleProperty);
       var html = this.template({movie: this.model.toJSON()});
-       this.$el.css({
-         'background-image':backgroundImageStyleProperty,
-         'height': '278px',
-         'width': '185px',
-         'display': 'inline-block'
-       });
-      this.$el.html(html);
+      //  this.$el.css({
+      //    'background-image':backgroundImageStyleProperty,
+      //    'background-size':'contain',
+      //    'height': '278px',
+      //    'width': '185px',
+      //    'display': 'inline-block'
+      //  });
+      this.$el.html(html)
       // console.log("in movie render");
       this.delegateEvents();
     }else if (this.model.attributes.type === "search"){
     const  backgroundImageStyleProperty = "url(\" " + this.model.attributes.image_url+ "\") ";
     var html = this.movieSearchTemplate({movie: this.model.toJSON()});
-       this.$el.css({
-         'background-image':backgroundImageStyleProperty,
-         'height': '278px',
-         'width': '185px',
-         'display': 'inline-block'
-       });
+      //  this.$el.css({
+      //    'background-image':backgroundImageStyleProperty,
+      //    'height': '278px',
+      //    'width': '185px',
+      //    'display': 'inline-block'
+      //  });
       this.$el.html(html);
     }
 
