@@ -68,6 +68,7 @@ var MovieListView = Backbone.View.extend({
       var order_count = this.$('#inventory').val();
       this.movieInModal.orderMovie(order_count);
     }
+    console.log(this);
   },
 
   createMovie: function(event) {
