@@ -67,7 +67,6 @@ var MovieView = Backbone.View.extend({
       $('#order-form').hide();
       console.log(order_count);
 
-      // movieList.fetch();
 
 
   },
