@@ -7,15 +7,9 @@ var  Movie = Backbone.Model.extend({
     url:'http://localhost:3000/movies',
   },
   initialize: function(options) {
-
-    // console.log(this);
-
+    
   }
-  // toggleComplete: function() {
-  //   var newStatus = !(this.get('complete'));
-  //   this.set('complete', newStatus);
-  //   this.save();
-  // }
+
 });
 
 

@@ -11,13 +11,9 @@ var MovieView = Backbone.View.extend({
   },
 
 
-
-
   render: function() {
     const backgroundImageStyleProperty = "url(\" " + this.model.attributes.image_url.replace("https://image.tmdb.org/t/p/w185","")+ "\") ";
-    // console.log(this.model.attributes.image_url);
     if (this.model.attributes.type === "rental") {
-      //  console.log(backgroundImageStyleProperty);
       var html = this.template({movie: this.model.toJSON()});
       //  this.$el.css({
       //    'background-image':backgroundImageStyleProperty,
@@ -27,7 +23,6 @@ var MovieView = Backbone.View.extend({
       //    'display': 'inline-block'
       //  });
       this.$el.html(html)
-      // console.log("in movie render");
       this.delegateEvents();
     }else if (this.model.attributes.type === "search"){
     const  backgroundImageStyleProperty = "url(\" " + this.model.attributes.image_url+ "\") ";
@@ -44,11 +39,8 @@ var MovieView = Backbone.View.extend({
     return this
   },
   events: {
-    // "click .show-details": "onClick",
-    // "click .delete-button": "deleteMovie",
     "click #add": "orderMovie",
     "click #open": "openForm"
-    // "click #rent: "
 
   },
   deleteMovie: function(event) {
@@ -65,26 +57,17 @@ var MovieView = Backbone.View.extend({
     // event.preventDefault();
 
     console.log("orderMovie called");
-    var selectedMovie = this.model
+    var selectedMovie = this.model;
     selectedMovie.set({inventory:order_count});
-    console.log(selectedMovie.attributes)
+    console.log(selectedMovie.attributes);
     var options = {
       success: 'syncSuccessCallback',
       url: this.model.attributes.url,
       method: "create",
-      // inventory: inventory
-
-      // data: this.model.toJSON(),
     }
-      // console.log( this);
-      // console.log( this.model.attributes.url);
-      // console.log(this.model.toJSON());
       this.model.emulateHTTP = true;
       this.model.sync("create",selectedMovie,[options]);
       $('#order-form').hide();
-      console.log(order_count);
-
-
 
   },
   syncSuccessCallback: function(collection, response, options){

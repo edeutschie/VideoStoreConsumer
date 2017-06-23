@@ -18,16 +18,9 @@ var MovieListView = Backbone.View.extend({
       this.addMovie(rawMovie);
     }, this);
 
-    // this.input = {
-    // title: this.$('.new-movie input[name="name"]'),
-    // age: this.$('.new-movie input[name="age"]'),
-    // breed: this.$('.new-movie input[name="breed"]')
-    // };
     this.listenTo(this.model, '#search', this.getInput);
     this.listenTo(this.model, 'add', this.addMovie);
     this.listenTo(this.model, 'update', this.render);
-    // this.listenTo(this.model, 'library', this.render);
-    // this.listenTo(this.model, 'remove', this.removeMovie);
   },
 
   render: function() {
@@ -37,14 +30,11 @@ var MovieListView = Backbone.View.extend({
 
 
     this.movieList.forEach(function(movieView){
-      // movieView.model.set({type:"rental"});
       movieView.render();
-      // console.log(movieView.model);
 
       this.listElement.prepend(movieView.$el);
 
       self.listenTo(movieView, 'openorderform', self.showMovieDetails);
-      // self.listenTo(movieView, 'showModal', self.showContactInfo )
 
     }, this,
 
@@ -55,12 +45,8 @@ var MovieListView = Backbone.View.extend({
 
   events: {
     'click #search': 'getInput',
-    // 'click #open': 'showMovieDetails',
     'click #close': 'hideMovieDetails',
     'click #order-movie': 'orderMovie'
-    // 'click #library': 'render'
-    // 'submit .new-movie': 'createMovie'
-    // 'click .clear-button': 'clearInput'
   },
 
   orderMovie: function(event) {
@@ -80,8 +66,9 @@ var MovieListView = Backbone.View.extend({
   },
 
   addMovie: function(movie) {
-    // console.log("this is movie");
-    // console.log(movie);
+    console.log("orig url");
+    console.log("test" + movie.attributes.image_url);
+
     var cleanImage_url = movie.attributes.image_url.replace("https://image.tmdb.org/t/p/w185","");
     var movieView = new MovieView({
       model: movie,
@@ -89,17 +76,17 @@ var MovieListView = Backbone.View.extend({
       movieSearchTemplate : this.movieSearchTemplate
     });
 
-    movie.set({image_url:cleanImage_url})
+    // if (movie.attributes.image_url.includes("lorem")) {
+    //   movie.set({image_url:cleanImage_url});
+    //   console.log("clean url");
+    // }
 
-    // this.listenTo(movieView, 'showDetailsClicked', this.showMovieDetails);
-    // this.listenTo(movieView,'getInput') find the right callback
-    // this.listenTo(movie, 'edit', this.editMovie);
+      console.log(movie.attributes.image_url);
 
     this.movieList.push(movieView);
   },
 
   showMovieDetails: function(movieView) {
-    // event.preventDefault();
     console.log("in Show Movie Details");
 
     this.movieInModal = movieView;
@@ -107,7 +94,6 @@ var MovieListView = Backbone.View.extend({
     var movieDetailsTemplate = this.movieDetailTemplate({movie: movieView.model.toJSON()});
     $('#order-form').html(movieDetailsTemplate);
     $("#order-form").show();
-    // this.render();
   },
 
   hideMovieDetails: function(event) {
@@ -115,22 +101,12 @@ var MovieListView = Backbone.View.extend({
     $("#order-form").hide();
   },
 
-      // this.listElement.empty();
-
-    //   this.movieList.forEach(function(movieView){
-    //   movieView.searchRender();
-    //   console.log("word");
-    //
-    //   this.listElement.append(movieView.$el);
-    // }, this);
-
-  //   return this;
-  // },
-
   getInput: function() {
     var searchList = new MovieList(),
     query = this.$('#title').val(),
     url = this.model.url;
+    console.log("search url");
+    console.log(url);
    searchList.fetch({
      url:url + "?query=" + query,
      success:this.searchRender
@@ -150,9 +126,6 @@ var MovieListView = Backbone.View.extend({
           movie.set({type:"search"})
         })
  },
-
-  // this.listenTo(movie, 'edit', this.editPet);
-
 
 });
 

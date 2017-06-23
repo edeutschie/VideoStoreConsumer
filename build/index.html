@@ -32,7 +32,6 @@
 
 
         <section >
-      <!-- <section id='movie-list'></section> -->
 
 
       <section class= "column large-10 medium-10 small-12">
@@ -45,6 +44,8 @@
       <section id='new-movie'></section>
     </main>
 
+      <footer>Powered by The Movie DB</footer>
+
     <!-- Templates -->
 
 
@@ -52,7 +53,6 @@
           <img id= "poster" src=<%-movie.image_url%>>
           <p>
           <%- movie.title %>
-          <!-- <%- movie.inventory %> -->
           <!-- <button type="submit" class="button" id="rent">Rent</button> -->
       </script>
 
@@ -71,21 +71,14 @@
       <input type="text" name="title" id="inventory"></input>
       <button type="submit" class="button" id="order-movie">Order Movie</button>
 
-<!--
-      <% if(movie.vaccinated){ %>
-        <input type="checkbox" name="vaccinated" checked="checked">
-      <% }else{ %>
-        <input type="checkbox" name="vaccinated">
-      <% } %> -->
     </script>
-
-    <!-- <script type="text/template" id="tmpl-contact-details">
-      <h3><%-  %></h3>
-      <h4><%- email %></h4>
-      <h4><%- phone %></h4>
-    </script> -->
 
     <script src="/app.bundle.js"></script>
 
+
+
+
   </body>
+
+
   </html>

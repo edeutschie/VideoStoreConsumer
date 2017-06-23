@@ -1,18 +1,19 @@
 @include foundation-everything;
 @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
 
-/** {
+* {
   font-family: 'Slabo 27px', serif;
-}*/
+}
 
 main {
     background: lightblue;
-    /*font-family: 'Slabo 27px', serif;*/
+    font-family: 'Slabo 27px', serif;
 }
 
 header {
   background-color: white;
   padding: 0.5rem;
+  font-family: 'Slabo 27px', serif;
 }
 
 h1 {
@@ -50,7 +51,6 @@ div {
 
 
 #order-form {
-
   z-index: 10;
   width: 50%;
   height: 60%;
@@ -60,7 +60,10 @@ div {
   text-align: center;
   margin-left: 20%;
   margin-right: 20%;
+  border: 2px solid black;
+  font-family: 'Slabo 27px', serif;
 }
+
  li{
    vertical-align: top;
    margin: 5px;
