@@ -1,12 +1,22 @@
 @include foundation-everything;
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
+/** {
+  font-family: 'Slabo 27px', serif;
+}*/
 
 main {
     background: lightblue;
+    /*font-family: 'Slabo 27px', serif;*/
 }
 
 header {
-  background-color: lightgreen;
+  background-color: white;
   padding: 0.5rem;
+}
+
+h1 {
+  text-align: center;
 }
 
 #completed-checkbox {
@@ -42,17 +52,14 @@ div {
 #order-form {
 
   z-index: 10;
-  /*position: fixed;*/
   width: 50%;
   height: 60%;
   top: 30%;
   left: 30%;
-  background-color: gray;
+  background-color: white;
   text-align: center;
-  /*border: solid black;*/
   margin-left: 20%;
   margin-right: 20%;
-  border-radius: 5%;
 }
  li{
    vertical-align: top;
