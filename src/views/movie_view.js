@@ -43,6 +43,7 @@ var MovieView = Backbone.View.extend({
     "click #open": "openForm"
 
   },
+
   deleteMovie: function(event) {
     console.log("deleteMovie called!");
     if (window.confirm("Are you sure you want to delete this movie?")) {
@@ -50,11 +51,8 @@ var MovieView = Backbone.View.extend({
       this.model.destroy();
     }
   },
+  
   orderMovie: function(order_count){
-    // I don't think we can preventDefault on a button that was
-    // inserted with the template.  It will just rerender whenever
-    // the user presses it
-    // event.preventDefault();
 
     console.log("orderMovie called");
     var selectedMovie = this.model;
